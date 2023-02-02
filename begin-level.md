@@ -42,24 +42,25 @@ The different types of comments in C# are:
 
 -   XML comments
 
-Example -
-
+*Example:*
+```csharp
 /// example of XML comment
+```
 
 -   Single Line comments
 
-Example -
-
+*Example:*
+```csharp
 // example of single-line comment
-
+```
 -   Multi-line comments
 
-Example -
-
+*Example:*
+```csharp
 /* example of an
 
 multiline comment */
-
+```
 ### Explain the four steps involved in the C# code compilation.
 
 Four steps of code compilation in C# include -
