@@ -25,3 +25,16 @@ L'ASP.NET Core présente les avantages suivants par rapport à l'ASP.NET :
 - Il n'y a pas de dépendance à l'installation du framework car toutes les dépendances requises sont livrées avec notre application
 - ASP.NET Core peut traiter plus de demandes que l'ASP.NET.
 - Plusieurs options de déploiement disponibles avecASP.NET Core
+
+### Qu'est-ce que la classe de démarrage dans ASP.NET Core ?
+
+La classe de démarrage est le point d'entrée de l'application ASP.NET Core. Chaque application .NET Core doit avoir cette classe. Cette classe contient les éléments liés à la configuration de l'application. Il n'est pas nécessaire que le nom de la classe soit "Startup", cela peut être n'importe quoi, nous pouvons configurer la classe de démarrage dans la classe Program.
+
+```csharp
+public class Program {
+	public static void Main(string[] args) {
+		CreateWebHostBuilder(args).Build().Run();
+	}
+	public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<TestClass>();
+}
+```

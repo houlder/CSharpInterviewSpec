@@ -24,3 +24,16 @@ There are the following advantages of ASP.NET Core over ASP.NET :
 - There is no dependency on framework installation because all the required dependencies are shipped with our application
 - ASP.NET Core can handle more requests than the ASP.NET
 - Multiple deployment options available withASP.NET Core
+
+### What is the startup class in ASP.NET core?
+
+The startup class is the entry point of the ASP.NET Core application. Every .NET Core application must have this class. This class contains the application configuration related items. It is not necessary that the class name must be "Startup", it can be anything, we can configure the startup class in the Program class.
+    
+```csharp
+public class Program {
+	public static void Main(string[] args) {
+		CreateWebHostBuilder(args).Build().Run();
+	}
+	public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<TestClass>();
+}
+```
