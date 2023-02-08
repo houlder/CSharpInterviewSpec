@@ -13,10 +13,12 @@ The appSettings block in web config file sets the user-defined values for the wh
 
 For example, in the following code snippet, the specified ConnectionString section is used throughout the project for database connection:
 
-<em><configuration>
-<appSettings>
-<add key="ConnectionString" value="server=local; pwd=password; database=default" />
-</appSettings></em>
+```xml
+<configuration>
+    <appSettings>
+        <add key="ConnectionString" value="server=local; pwd=password; database=default" />
+    </appSettings>
+```
 
 ### What is the difference between an HtmlInputCheckBox control and an HtmlInputRadioButton control?
 
@@ -24,9 +26,10 @@ In HtmlInputCheckBoxcontrol, multiple item selection is possible whereas in Html
 
 ### Which namespaces are necessary to create a localized application?
 
-System.Globalization
-
-System.Resources
+```csharp
+    using System.Globalization
+    using System.Resources
+```
 
 ### What is a cookie? Liste the different types in ASP.NET
 
@@ -45,18 +48,22 @@ Role Based Security used to implement security based on roles assigned to user g
 
 Then we can allow or deny users based on their role in the organization. Windows defines several built-in groups, including Administrators, Users, and Guests.
 
+```xml
 <AUTHORIZATION>
-< authorization >
-    < allow roles="Domain_Name\Administrators" / >   < !-- Allow Administrators in domain. -- >
-    < deny users="*"  / >                            < !-- Deny anyone else. -- >
-< /authorization >
+    <authorization>
+        <allow roles="Domain_Name\Administrators"/>  < !-- Allow Administrators in domain. -- >
+        <deny users="*"/>                            < !-- Deny anyone else. -- >
+    </authorization>
+```
 
 ### How can we prevent browser from caching an ASPX page?
 
 We can SetNoStore on HttpCachePolicy object exposed by the Response object’s Cache property:
 
-Response.Cache.SetNoStore ();
-Response.Write (DateTime.Now.ToLongTimeString ());
+```csharp
+    Response.Cache.SetNoStore ();
+    Response.Write (DateTime.Now.ToLongTimeString ());
+```
 
 ### What is ViewState?
 
@@ -70,9 +77,9 @@ They exist for the life of the current page.
 
 ### What is the difference between Server.Transfer and Response.Redirect?
 
-In Server.Transfer page processing transfers from one page to the other page without making a round-trip back to the client’s browser. This provides a faster response with a little less overhead on the server. The clients url history list or current url Server does not update in case of Server.Transfer.
+In **Server.Transfer** page processing transfers from one page to the other page without making a round-trip back to the client’s browser. This provides a faster response with a little less overhead on the server. The clients url history list or current url Server does not update in case of Server.Transfer.
 
-Response.Redirect is used to redirect the user’s browser to another page or site. It performs trip back to the client where the client’s browser is redirected to the new page. The user’s browser history list is updated to reflect the new address.
+**Response.Redirect** is used to redirect the user’s browser to another page or site. It performs trip back to the client where the client’s browser is redirected to the new page. The user’s browser history list is updated to reflect the new address.
 
 ### What is the difference between authentication and authorization?
 
@@ -80,7 +87,7 @@ Authentication is a process of identifying user whereas authorization is used to
 
 ### Which object encapsulates state or data of a user?
 
-Session object.
+- Session object.
 
 
 ## ASP.NET Nore
