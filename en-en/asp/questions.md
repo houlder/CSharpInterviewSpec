@@ -37,3 +37,66 @@ public class Program {
 	public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<TestClass>();
 }
 ```
+
+### Describe the Dependency Injection.
+
+Dependency Injection is a Design Pattern that's used as a technique to achieve the Inversion of Control (IoC) between the classes and their dependencies.
+ASP.NET Core comes with a built-in Dependency Injection framework that makes configured services available throughout the application. You can configure the services inside the ConfigureServices method as below.
+    
+```csharp
+services.AddScoped();
+```
+
+A Service can be resolved using constructor injection and DI framework is responsible for the instance of this service at run time. For more visit ASP.NET Core Dependency Injection
+
+### How to read values from Appsettings.json file?
+
+You can read values from appsettings.json using below code.
+
+```csharp
+class Test{
+	// requires using Microsoft.Extensions.Configuration;
+ 	private readonly IConfiguration Configuration;
+    public TestModel(IConfiguration configuration) {
+        Configuration = configuration;
+    }
+	/*public void ReadValues(){
+		var val = Configuration["key"]; // reading direct key values
+		var name = Configuration["Employee:Name"]; // read complex values
+	}*/
+}
+```
+Default configuration provider first load the values from appsettings.json and then from appsettings.Environment.json file.
+Environment specific values override the values from appsettings.json file. In development environment appsettings.Development.json file values override the appsettings.json file values, same apply to production environment.
+You can also read the appsettings.json values using options pattern described Read values from appsettings.json file. 
+
+### How ASP.NET Core serve static files?
+
+In ASP.NET Core, Static files such as CSS, images, JavaScript files, HTML are the served directly to the clients. ASP.NET Core template provides a root folder called wwwroot which contains all these static files. UseStaticFiles() method inside Startup.Configure enables the static files to be served to client.
+You can serve files outside of this webroot folder by configuring Static File Middleware as following.
+
+```csharp
+app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(env.ContentRootPath, "MyStaticFiles")), // MyStaticFiles is new folder
+        RequestPath = "/StaticFiles"  // this is requested path by client
+    });
+// now you can use your file as below
+<img src="/StaticFiles/images/profile.jpg" class="img" alt="A red rose" />
+ // profile.jpg is image inside MyStaticFiles/images folder
+```
+
+
+### Explain Session and State management in ASP.NET Core
+
+As we know HTTP is a stateless protocol. HTTP requests are independent and does not retain user values. 
+There are different ways to maintain user state between multiple HTTP requests.
+
+- Cookies
+- Session State
+- TempData
+- Query strings
+- Hidden fields
+- HttpContext.Items
+- Cache
