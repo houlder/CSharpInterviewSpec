@@ -186,7 +186,7 @@ app.UseStaticFiles(new StaticFileOptions
 ```
 
 
-### 21. Explication de la gestion des sessions et des états dans ASP.NET Core. (1pt)
+### 21. Explicer les moyens de la gestion des sessions et des états dans ASP.NET Core. (1pt)
 
 Comme nous le savons, HTTP est un protocole sans état. Les requêtes HTTP sont indépendantes et ne conservent pas les valeurs de l'utilisateur. 
 Il existe différentes façons de conserver l'état de l'utilisateur entre plusieurs requêtes HTTP.
