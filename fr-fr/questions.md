@@ -89,12 +89,7 @@ L'authentification est un processus d'identification de l'utilisateur alors que 
 - Session object ou l'objet de session.
 
 
-
-
-
-## ASP.NET Core
-
-
+## ASP.NET Core
 
 ### Qu'est-ce que l'ASP.NET Core ?
 [ASP.NET Core] (https://www.dotnettricks.com/training/masters-program/aspnet-core) n'est pas une version améliorée d'ASP.NET. ASP.NET Core est une réécriture complète qui fonctionne avec le cadre .net Core. Il est beaucoup plus rapide, configurable, modulaire, évolutif, extensible et prend en charge plusieurs plates-formes. Il peut fonctionner à la fois avec le cadre .NET Core et .net via le cadre standard .NET. Il est le mieux adapté pour développer des applications basées sur le cloud telles que les applications web, les applications mobiles et les applications IoT.
