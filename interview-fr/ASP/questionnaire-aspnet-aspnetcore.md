@@ -192,9 +192,9 @@ Comme nous le savons, HTTP est un protocole sans état. Les requêtes HTTP sont 
 Il existe différentes façons de conserver l'état de l'utilisateur entre plusieurs requêtes HTTP.
 
 - Cookies
-- État de la session
-- Données temporaires
-- Chaînes de requête
-- Champs cachés
-- Items de HttpContext
+- Session State
+- TempData
+- Query strings
+- Hidden fields
+- HttpContext.Items
 - Cache
