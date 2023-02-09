@@ -136,3 +136,67 @@ public class Program {
 	public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<TestClass>();
 }
 ```
+
+### Décrire l'injection de dépendances.
+
+L'injection de dépendances est un modèle de conception utilisé comme technique pour réaliser l'inversion de contrôle (IoC) entre les classes et leurs dépendances.
+ASP.NET Core est livré avec un cadre intégré d'injection de dépendances qui rend les services configurés disponibles dans toute l'application. Vous pouvez configurer les services à l'intérieur de la méthode ConfigureServices comme ci-dessous.
+    
+```csharp
+services.AddScoped() ;
+```
+
+Un service peut être résolu en utilisant l'injection de constructeur et le cadre DI est responsable de l'instance de ce service au moment de l'exécution. Pour en savoir plus, consultez le site ASP.NET Core Dependency Injection (en anglais).
+
+### Comment lire les valeurs du fichier Appsettings.json ?
+
+Vous pouvez lire les valeurs du fichier appsettings.json en utilisant le code ci-dessous.
+
+```csharp
+classe Test{
+	// nécessite l'utilisation de Microsoft.Extensions.Configuration ;
+ 	private readonly IConfiguration Configuration ;
+    public TestModel(IConfiguration configuration) {
+        Configuration = configuration ;
+    }
+	/*public void ReadValues(){
+		var val = Configuration["key"] ; // lecture des valeurs directes des clés
+		var name = Configuration["Employee:Name"] ; // lecture des valeurs complexes
+	}*/
+}
+```
+Le fournisseur de configuration par défaut charge d'abord les valeurs de appsettings.json, puis celles du fichier appsettings.Environment.json.
+Les valeurs spécifiques à l'environnement remplacent les valeurs du fichier appsettings.json. Dans l'environnement de développement, les valeurs du fichier appsettings.Development.json remplacent les valeurs du fichier appsettings.json, il en va de même pour l'environnement de production.
+Vous pouvez également lire les valeurs du fichier appsettings.json en utilisant le modèle d'options décrit Lire les valeurs du fichier appsettings.json. 
+
+
+### Comment ASP.NET Core sert-il les fichiers statiques ?
+
+Dans ASP.NET Core, les fichiers statiques tels que les CSS, les images, les fichiers JavaScript, le HTML sont servis directement aux clients. Le modèle ASP.NET Core fournit un dossier racine appelé wwwroot qui contient tous ces fichiers statiques. La méthode UseStaticFiles() dans Startup.Configure permet de servir les fichiers statiques au client.
+Vous pouvez servir des fichiers en dehors de ce dossier webroot en configurant le Static File Middleware comme suit.
+
+```csharp
+app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(env.ContentRootPath, "MyStaticFiles")), // MyStaticFiles est un nouveau dossier
+        RequestPath = "/StaticFiles" // Il s'agit du chemin demandé par le client.
+    }) ;
+// maintenant vous pouvez utiliser votre fichier comme ci-dessous
+<img src="/StaticFiles/images/profile.jpg" class="img" alt="Une rose rouge" />
+ // profile.jpg est une image dans le dossier MyStaticFiles/images.
+```
+
+
+### Explication de la gestion des sessions et des états dans ASP.NET Core
+
+Comme nous le savons, HTTP est un protocole sans état. Les requêtes HTTP sont indépendantes et ne conservent pas les valeurs de l'utilisateur. 
+Il existe différentes façons de conserver l'état de l'utilisateur entre plusieurs requêtes HTTP.
+
+- Cookies
+- État de la session
+- Données temporaires
+- Chaînes de requête
+- Champs cachés
+- Items de HttpContext
+- Cache
